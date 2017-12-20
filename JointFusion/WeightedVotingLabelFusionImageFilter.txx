@@ -47,8 +47,8 @@ WeightedVotingLabelFusionImageFilter<TInputImage, TOutputImage>
 ::UpdateInputs()
 {
   // Set all the inputs
-  this->SetNumberOfInputs(m_Target.size() + 1 + (m_Target.size()+2) * m_Atlases.size() + m_Exclusions.size());
-//  this->SetNumberOfInputs(1 + 2 * m_Atlases.size() + m_Exclusions.size());
+  this->SetNumberOfIndexedInputs(m_Target.size() + 1 + (m_Target.size()+2) * m_Atlases.size() + m_Exclusions.size());
+//  this->SetNumberOfIndexedInputs(1 + 2 * m_Atlases.size() + m_Exclusions.size());
 
   size_t kInput = 0;
   for(size_t i = 0; i < m_Target.size(); i++)
@@ -289,8 +289,8 @@ WeightedVotingLabelFusionImageFilter<TInputImage, TOutputImage>
       const InputImagePixelType **bestMatchPtr = new const InputImagePixelType *[m_Modality];
       const InputImagePixelType **tMatchPtr = new const InputImagePixelType *[m_Modality];
 
-      InputImagePixelType bestMatchSum[m_Modality], bestMatchSSQ[m_Modality],bestMatchMean[m_Modality],bestMatchVar[m_Modality],bestMatchSD[m_Modality];
-      InputImagePixelType MatchSum[m_Modality], MatchSSQ[m_Modality];
+      std::vector<InputImagePixelType> bestMatchSum(m_Modality), bestMatchSSQ(m_Modality),bestMatchMean(m_Modality),bestMatchVar(m_Modality),bestMatchSD(m_Modality);
+      std::vector<InputImagePixelType> MatchSum(m_Modality), MatchSSQ(m_Modality);
 
       int bestK = 0;
       for(unsigned int k = 0; k < nSearch; k++)
