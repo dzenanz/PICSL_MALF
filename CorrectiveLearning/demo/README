@@ -1,0 +1,34 @@
+This folder contains data to test the segAdaptor tool. 
+
+The data used for this demo are 3T MRI from Alzheimer.s Disease Neuroimaging 
+Initiative (ADNI, www.loni.ucla.edu/ADNI). The data set used here contains 
+139 images (57 controls and 82 mild cognitive impairment (MCI) patients). 
+
+The folder, ADNI3T, contains manual segmentations of the hippocampus produced 
+by our manual rater, Murat Altinay MD. Each segmentation is named after the 
+subject's ID. For instance, ADNI3T/002_S_0413_manual_L.nii.gz is the manual 
+segmentation of the left side hippocampus for subject 002_S_0413 and 
+ADNI3T/002_S_0413_manual_R.nii.gz contains the manual segmentation of the 
+right side hippocampus for the same subject.
+
+The folders ADNI3T/CV01, ..., ADNI3T/CV05, contain 5 cross-validation 
+experiments used in our experiment, respectively. Each folder contains 
+automatic segmentations produced by a multi-atlas based segmentation method 
+for randomly selected 40 subjects, among which 20 were used as atlases and 
+the other 20 were used for testing. The automatic segmentation of each 
+testing subject was produced by deformable registering its image to each of 
+the 20 atlases, followed by simialrity-based local weighting label fusion. 
+The automatic segmentation of each atlas was produced by deformable 
+registering its image to the remaining 19 atlases, followed by label fusion. 
+
+The files ADNI3T/CV01/testManualListL and ADNI3T/CV01/testAutoListL store 
+the file locations of the manual segmentations and automatic segmentations of 
+the left side hippocampi for the atlases. The files 
+ADNI3T/CV01/trainManualListL and ADNI3T/CV01/trainAutoListL store the file 
+locations of the manual segmentations and automatic segmentations of the left 
+side hippocampi for the testing subjects. 
+
+Run rundemo.sh in this folder will run training and correction for one subeject
+for one cross-validation experiment.
+
+
